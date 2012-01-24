@@ -1,5 +1,6 @@
 ProjectsGravy::Application.routes.draw do
   resources :projects
+  match 'list', :to  => 'repos#list'
 
   devise_for :users
   

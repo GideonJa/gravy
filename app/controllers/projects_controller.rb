@@ -10,6 +10,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def list
+    client = Octokit::Client.new(:login => "gideonja", :password => "---cccc") # XXX must remove temporary!!!
+    @projects = client.list_repositories
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @projects }
+    end
+  end
+
   # GET /projects/1
   # GET /projects/1.json
   def show
