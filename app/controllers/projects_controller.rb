@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
   end
 
   def list
-    client = Octokit::Client.new(:login => "gideonja", :password => "razed115") # XXX must remove temporary!!!
+    client = Octokit::Client.new(:login => "gideonja", :password => "----") # XXX must remove temporary!!!
     @projects = client.list_repositories
 
     respond_to do |format|
