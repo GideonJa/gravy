@@ -1,11 +1,13 @@
 class AuthenticationsController < ApplicationController
   def index
+     @authentications = Authentication.all
   end
 
   def create
+    raise request.env["omniauth.auth"].to_yaml
     omniauth = request.env["omniauth.auth"]
-     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-     gem
+     # authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+     authentication = Authentication.all_of(:uid => omniauth['uid'], :provider => omniauth['provider']).first
      if authentication
        flash[:notice] = "Signed in successfully."
        sign_in_and_redirect(:user, authentication.user)
@@ -15,8 +17,10 @@ class AuthenticationsController < ApplicationController
        redirect_to authentications_url
      else
        user = User.new
+       user.apply_omniauth(omniauth)
+       
        if user.save
-         flash[:notice] = "Signed in successfully."
+         flash[:notice] = "Created a user successfully."
          sign_in_and_redirect(:user, user)
        else
          session[:omniauth] = omniauth.except('extra')

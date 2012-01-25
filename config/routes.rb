@@ -3,8 +3,8 @@ ProjectsGravy::Application.routes.draw do
   resources :projects
   resources :authentications
   match 'list', :to  => 'repos#list'
-  match '/auth/:provider/callback'  => 'authentication#create'
-  match '/auth/failure'             => 'authentication#failure'
+  match '/auth/:provider/callback'  => 'authentications#create'
+  match '/auth/failure'             => 'authentications#failure'
 
   devise_for :users
   

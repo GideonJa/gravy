@@ -15,14 +15,13 @@ class User
      find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
    end
 
-   def self.create_with_omniauth(auth)
-     create! do |user|
-       user.name = auth["info"]["name"]
-       user.email = auth["info"]["email"]
-     end
-      
-      user.provider = auth["provider"]
-       user.uid = auth["uid"]
-     
+
+   def apply_omniauth(omniauth)
+     puts "im in APPLY #{omniauth['info']['email']}"
+     self.email = omniauth['info']['email'] if email.blank?
+     # self.name = omniauth['info']['name'] if name.blank?
+     self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+     puts "=========================im in APPLY #{self.authentications[0].provider}"
    end
+
 end
