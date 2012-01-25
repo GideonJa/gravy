@@ -11,7 +11,11 @@ class ProjectsController < ApplicationController
   end
 
   def list
+<<<<<<< HEAD
     client = Octokit::Client.new(:login => "gideonja", :password => "---cccc") # XXX must remove temporary!!!
+=======
+    client = Octokit::Client.new(:login => "gideonja", :password => "----") # XXX must remove temporary!!!
+>>>>>>> fa31741... getting omniauth to work with devise pgase I
     @projects = client.list_repositories
 
     respond_to do |format|
