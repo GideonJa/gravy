@@ -12,6 +12,17 @@ gem "devise", 			"~> 1.5.3"
 gem "octokit", 			"~> 0.6.5"
 gem "omniauth-github", 	"~> 1.0.1"
 
+group :development do
+  gem "faker", "~> 1.0.1"
+  gem "rspec-rails", "~> 2.7.0"
+end
+
+group :test do
+  gem "rspec-rails", "~> 2.7.0"
+  gem 'webrat', '0.7.3'
+  gem "factory_girl_rails", "~> 1.4.0"
+end
+
 
 # Gems used only for assets and not required
 # in production environments by default.

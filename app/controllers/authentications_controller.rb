@@ -12,14 +12,18 @@ class AuthenticationsController < ApplicationController
      if authentication
        session[:omniauth] = omniauth.except('extra')
        flash[:notice] = "Signed in successfully."
-       sign_in_and_redirect(:user, authentication.user)
+       # sign_in_and_redirect(:user, authentication.user)
+       sign_in(:user, authentication.user)
+       redirect_to list_path
+       
      elsif current_user
        current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
        flash[:notice] = "Authentication successful."
        redirect_to authentications_url
      else
        user = User.new
-       user.apply_omniauth(omniauth)
+       user.email = omniauth['info']['email'] if email.blank?
+       user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
        if user.save
          flash[:notice] = "Created a user successfully."
          sign_in_and_redirect(:user, user)
@@ -42,3 +46,9 @@ class AuthenticationsController < ApplicationController
   end
 
 end
+
+
+
+user = User.new
+user.email = "eee@ibm.com" if user.email.blank?
+user.authentications.build(:provider => "ggg"", :uid => "111")

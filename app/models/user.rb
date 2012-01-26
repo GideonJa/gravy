@@ -17,11 +17,8 @@ class User
 
 
    def apply_omniauth(omniauth)
-     puts "im in APPLY #{omniauth['info']['email']}"
      self.email = omniauth['info']['email'] if email.blank?
-     # self.name = omniauth['info']['name'] if name.blank?
      self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
-     puts "=========================im in APPLY #{self.authentications[0].provider}"
    end
 
 end
