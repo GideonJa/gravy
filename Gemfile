@@ -8,7 +8,7 @@ gem 'rails', '3.1.1'
 gem 'sqlite3'
 gem "mongoid", 			"~> 2.4.0"
 gem "bson_ext", 		"~> 1.5.2"
-gem "devise", 			"~> 1.5.3"
+# gem "devise", 			"~> 1.5.3"
 gem "octokit", 			"~> 0.6.5"
 gem "omniauth-github", 	"~> 1.0.1"
 
