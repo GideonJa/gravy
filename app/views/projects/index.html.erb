@@ -1,19 +1,22 @@
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Owner</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%if @projects%>
+		<table>
+		  <tr>
+		    <th>Name</th>
+		    <th>Create Date</th>
+			<th>Description</th>
+		  </tr>
 
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= project.name %></td>
-    <td><%= project.created_at.inspect[1..10] %></td>
-  </tr>
-<% end %>
-</table>
+		<% @projects.each do |project| %>
+		  <tr>
+		    <td><%= project.name %></td>
+		    <td><%= project.created_at.inspect[1..10] %></td>
+			<td><%= project.description %> 
+		  </tr>
+		<% end %>
+		</table>
+		<br /><br />
+		<%=@projects[0].inspect%>
+<%end%>
 
 
