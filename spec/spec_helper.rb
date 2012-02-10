@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+require 'rubygems'
 require 'rspec/rails'
 require 'rspec/autorun'
 
@@ -18,6 +19,16 @@ RSpec.configure do |config|
   # config.mock_with :rr
   config.mock_with :rspec
 
+  require 'database_cleaner'
+      config.before(:suite) do
+        DatabaseCleaner.strategy = :truncation
+        DatabaseCleaner.orm = "mongoid"
+      end
+
+      config.before(:each) do
+        DatabaseCleaner.clean
+      end
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

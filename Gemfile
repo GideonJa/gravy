@@ -21,6 +21,7 @@ group :test do
   gem "rspec-rails", "~> 2.7.0"
   gem 'webrat', '0.7.3'
   gem "factory_girl_rails", "~> 1.4.0"
+  gem "database_cleaner", "~> 0.7.1"
 end
 
 
