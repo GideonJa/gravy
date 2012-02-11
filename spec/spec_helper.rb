@@ -18,7 +18,11 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
   config.mock_with :rspec
-
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:github] = {
+      :provider => 'github',
+      :uid => '123545'}
+  
   require 'database_cleaner'
       config.before(:suite) do
         DatabaseCleaner.strategy = :truncation

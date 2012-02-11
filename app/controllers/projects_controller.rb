@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
+    @title = "Home"
     @projects =[]
     if current_user
       token = session[:omniauth][:credentials][:token]

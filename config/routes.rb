@@ -2,7 +2,6 @@ ProjectsGravy::Application.routes.draw do
  
   resources :projects, :only => [:index]
   resources :sessions
-  match 'list', :to  => 'repos#list'
   match '/auth/:provider/callback'  => 'sessions#create'
   match '/auth/failure'             => 'sessions#failure'
   match '/auth/signout'             => 'sessions#destroy', :as => "signout"
